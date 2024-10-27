@@ -1,0 +1,12 @@
+# example of docker compose file
+version: '3.7'
+
+services:
+  mysql:
+    image: bitnami/mysql:latest
+    ports: 
+      - 3306:3306 
+    environment:
+      - MYSQL_ROOT_USER=root
+      - MYSQL_DATABASE=banco_produtos
+      - MYSQL_ROOT_PASSWORD=root

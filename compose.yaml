@@ -1,0 +1,12 @@
+# exemplo de docker-compose para criar o banco mysql
+version: '3.7'
+
+services:
+  mysql:
+    image: bitnami/mysql:latest
+    ports: 
+      - 3306:3306 
+    environment:
+      - MYSQL_ROOT_USER=nome_usuario_root
+      - MYSQL_DATABASE=nome_banco
+      - MYSQL_ROOT_PASSWORD=senha_usuario_root
