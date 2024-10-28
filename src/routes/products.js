@@ -7,7 +7,11 @@ const prisma = new PrismaClient();
 // GET /products - Listar todos os produtos
 router.get('/products', async (req, res) => {
   try {
-    const products = await prisma.product.findMany(); // Note o uso de `product`
+    const products = await prisma.product.findMany({
+      orderBy: {
+        createdAt: 'desc'
+      }
+    }); // Note o uso de `product`
     res.json(products);
   } catch (error) {
     res.status(500).json({ error: 'Erro ao listar produtos' });
