@@ -37,7 +37,7 @@ router.post('/products', async (req, res) => {
   const { description, price, quantity } = req.body;
   try {
     const newProduct = await prisma.product.create({
-      data: { description, price, quantity }
+      data: { description, price: parseFloat(price), quantity }
     });
     res.status(201).json(newProduct);
   } catch (error) {
@@ -53,7 +53,7 @@ router.put('/products/:productId', async (req, res) => {
   try {
     const updatedProduct = await prisma.product.update({
       where: { id: productId },
-      data: { description, price, quantity, updatedAt: new Date() }
+      data: { description, price: parseFloat(price), quantity, updatedAt: new Date() }
     });
     res.json(updatedProduct);
   } catch (error) {
@@ -63,6 +63,7 @@ router.put('/products/:productId', async (req, res) => {
     res.status(500).json({ error: 'Erro ao atualizar produto' });
   }
 });
+
 
 // DELETE /products/:productId - Deletar produto
 router.delete('/products/:productId', async (req, res) => {
