@@ -4,21 +4,19 @@ import { PrismaClient } from '@prisma/client';
 const router = express.Router();
 const prisma = new PrismaClient();
 
-// GET /products - Listar todos os produtos
 router.get('/products', async (req, res) => {
   try {
     const products = await prisma.product.findMany({
       orderBy: {
         createdAt: 'desc'
       }
-    }); // Note o uso de `product`
+    }); 
     res.json(products);
   } catch (error) {
     res.status(500).json({ error: 'Erro ao listar produtos' });
   }
 });
 
-// GET /products/:productId - Listar um produto específico
 router.get('/products/:productId', async (req, res) => {
   const { productId } = req.params;
   try {
@@ -32,7 +30,6 @@ router.get('/products/:productId', async (req, res) => {
   }
 });
 
-// POST /products - Cadastrar novo produto
 router.post('/products', async (req, res) => {
   const { description, price, quantity } = req.body;
   try {
@@ -46,7 +43,6 @@ router.post('/products', async (req, res) => {
   }
 });
 
-// PUT /products/:productId - Atualizar produto
 router.put('/products/:productId', async (req, res) => {
   const { productId } = req.params;
   const { description, price, quantity } = req.body;
@@ -65,7 +61,6 @@ router.put('/products/:productId', async (req, res) => {
 });
 
 
-// DELETE /products/:productId - Deletar produto
 router.delete('/products/:productId', async (req, res) => {
   const { productId } = req.params;
   try {
