@@ -1,5 +1,7 @@
 # Como rodar o projeto
 
+* Projeto criado com `npm`, mas pode arriscar um `bun` aí (acho).
+* Na dúvida, tenta o `npm`
 * Entre na pasta do projeto e execute:
   ```bash
   npm install
